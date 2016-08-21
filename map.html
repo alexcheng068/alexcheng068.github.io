@@ -4,6 +4,7 @@
     <title>Simple Map</title>
     <meta name="viewport" content="initial-scale=1.0">
     <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="flex-layout-attribute.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <style>
       html, body {
@@ -15,42 +16,40 @@
         height: 100%;
       }
       .infowindow_top{
-
-        height: 230px;
-        width: 280px;
-        background-image: url("img/map_challenge.png");
-        border-radius: 15px 15px 0px 0px
+        height: 250px;
+        width: 270px;
+        background-color: black;
+        /*background-repeat: no-repeat;
+        background-size: contain;*/
       }
      .infowindow_bottom{
-
-        min-height: 200px;
-        height: 170px;
-        width: 280px;
-        padding: 10px;
+        height: 130px;
+        width: 270px;
+        padding-right: 10px;
+        padding-left: 10px;
       }
       .gm-style-iw {
         border-radius: 15px 15px 15px 15px;
-         width: 280px !important;
+         width: 270px !important;
          top: 15px !important; // move the infowindow 15px down
          left: 0 !important;
          background-color: #fff;
+         min-width: 270px;
          /*box-shadow: 0 1px 6px rgba(178, 178, 178, 0.6);
          border: 1px solid rgba(72, 181, 233, 0.6);
          border-radius: 2px 2px 0 0;*/
       }
-      #iw-container  .iw-title {
-         font-family: 'Open Sans Condensed', sans-serif;
-         font-size: 22px;
-         font-weight: 400;
-         padding: 10px;
-         background-color: #48b5e9;
-         color: white;
-         margin: 1px;
-         border-radius: 2px 2px 0 0; /* In accordance with the rounding of the default infowindow corners. */
-      }
       .font1{
         font-family: arial;
         color: #3A4B59;
+      }
+      .font2{
+        font-family: arial;
+        color: #F8A329;
+      }
+     .font3{
+        font-family: arial;
+        color: white;
       }
       .btn1{
         -webkit-border-radius: 28;
@@ -93,14 +92,33 @@
          infowindow.open(map, marker);
         });
 
-        var contentString='<div class="infowindow_top"></div>\
+        var contentString='<div class="infowindow_top">\
+                            <div style="text-align:center;">\
+                              <img src="img/nrc.png" width="90px" height="90px"></img>\
+                              <div class="font3" style="font-size:20px;font-weight:bold;">START RUNNING</div>\
+                              <div class="font3" style="font-size:18px;">CHALLENGE</div>\
+                              <div class="font2"> Toronto,ON</div>\
+                              </div><br>\
+                              <div layout="row">\
+                                <div  style="text-align:center;" flex="33" class="font2"><img src="img/clock.png" width="25px" height="25px">\
+                                </img><br>2 WEEKS</div>\
+                                <div style="text-align:center;" flex="33" class="font2"><img src="img/money.png" width="25px" height="25px">\
+                                </img><br>\
+                                $20 invest to Wealthsimple</div>\
+                                <div style="text-align:center;" flex="33" class="font2">\
+                                <img src="img/gift.png" width="25px" height="25px"></img><br>\
+                                15% off Nike purchase</div>\
+                            </div>\
+                             </div>\
                            <div class="infowindow_bottom">\
                             <div style="font-size:20px;font-weight:bold;" class="font1">CHALLENGE</div>\
                             <div style="font-size:18px;" class="font1">Join a Nike Running Club outing 4 times</div>\
                             <div style="text-align:center;"><button class="btn1">TAKE THE CHALLENGE</button></div>\
                           </div>';
         var infowindow = new google.maps.InfoWindow({
-          content: contentString
+          content: contentString,
+          maxWidth:600,
+          minWidth:290
         });
        
         marker2.addListener('click', function() {
@@ -110,7 +128,8 @@
 
         var contentString2= '<div>Hi this is a challenge too!</div>';
         var infowindow2 = new google.maps.InfoWindow({
-          content: contentString2
+          content: contentString2,
+          maxWidth: 600
         });  
 
         google.maps.event.addListener(infowindow, 'domready', function() {
