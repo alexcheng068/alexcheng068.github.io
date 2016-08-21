@@ -14,14 +14,23 @@
       #map {
         height: 100%;
       }
-      .infowindow{
+      .infowindow_top{
         max-width: 100%;
-        height: 480px;
-        width: 320px;
+        height: 260px;
+        width: 300px;
         background-image: url("img/map_challenge.png");
+        border-radius: 15px 15px 0px 0px
+      }
+     .infowindow_bottom{
+        max-width: 100%;
+        min-height: 200px;
+        height: 200px;
+        width: 300px;
+        padding: 10px;
       }
       .gm-style-iw {
-         width: 320px !important;
+        border-radius: 15px 15px 15px 15px;
+         width: 300px !important;
          top: 15px !important; // move the infowindow 15px down
          left: 0 !important;
          background-color: #fff;
@@ -38,6 +47,24 @@
          color: white;
          margin: 1px;
          border-radius: 2px 2px 0 0; /* In accordance with the rounding of the default infowindow corners. */
+      }
+      .font1{
+        font-family: arial;
+        color: #3A4B59;
+      }
+      .btn1{
+        -webkit-border-radius: 28;
+        -moz-border-radius: 28;
+        border-radius: 28px;
+        font-family: Arial;
+        color: #ffffff;
+        font-size: 20px;
+        background: #F8A329;
+        padding: 10px 20px 10px 20px;
+        text-decoration: none;
+        margin-top: 20px;
+        left: 50%;
+        right:50%;
       }
     </style>
   </head>
@@ -66,8 +93,12 @@
          infowindow.open(map, marker);
         });
 
-        var contentString= '<div class="infowindow">\
-                             callenge </div>';
+        var contentString='<div class="infowindow_top"></div>\
+                           <div class="infowindow_bottom">\
+                            <div style="font-size:20px;font-weight:bold;" class="font1">CHALLENGE</div>\
+                            <div style="font-size:18px;" class="font1">Join a Nike Running Club outing 4 times</div>\
+                            <div style="text-align:center;"><button class="btn1">TAKE THE CHALLENGE</button></div>\
+                          </div>';
         var infowindow = new google.maps.InfoWindow({
           content: contentString
         });
